@@ -57,6 +57,7 @@ void* get_evn(void* src_arg)
             XTestFakeMotionEvent(arg->Display, DefaultScreen(arg->Display), e.x, e.y, 0);
             printf("KeyPress: keycode=%d, x=%d, y=%d\n", e.button, e.x, e.y);
         }
+        XFlush(arg->Display);
     }
     return 0;
 }
