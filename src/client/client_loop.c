@@ -58,6 +58,7 @@ void* get_evn(void* src_arg)
             printf("KeyPress: keycode=%d, x=%d, y=%d\n", e.button, e.x, e.y);
         }
         XFlush(arg->Display);
+        usleep(100);
     }
     return 0;
 }
