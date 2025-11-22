@@ -33,28 +33,28 @@ void* get_evn(void* src_arg)
             {
                 break;
             }
-            XTestFakeKeyEvent(arg->Display,e.button, True, 100);
+            XTestFakeKeyEvent(arg->Display,e.button, True, 0);
             printf("KeyPress: keycode=%d, x=%d, y=%d\n", e.button, e.x, e.y);
 
         }
         else if (e.evnt_type == KeyRelease)
         {
-            XTestFakeKeyEvent(arg->Display,e.button, False, 100);
+            XTestFakeKeyEvent(arg->Display,e.button, False, 0);
             printf("KeyPress: keycode=%d, x=%d, y=%d\n", e.button, e.x, e.y);
         }
         else if (e.evnt_type == ButtonPress)
         {
-            XTestFakeButtonEvent(arg->Display, e.button, True, 100);
+            XTestFakeButtonEvent(arg->Display, e.button, True, 0);
             printf("KeyPress: keycode=%d, x=%d, y=%d\n", e.button, e.x, e.y);
         }
         else if (e.evnt_type == ButtonRelease)
         {
-            XTestFakeButtonEvent(arg->Display, e.button, False, 100);
+            XTestFakeButtonEvent(arg->Display, e.button, False, 0);
             printf("KeyPress: keycode=%d, x=%d, y=%d\n", e.button, e.x, e.y);
         }
         else if (e.evnt_type == MotionNotify)
         {
-            XTestFakeMotionEvent(arg->Display, DefaultScreen(arg->Display), e.x, e.y, 100);
+            XTestFakeMotionEvent(arg->Display, DefaultScreen(arg->Display), e.x, e.y, 0);
             printf("KeyPress: keycode=%d, x=%d, y=%d\n", e.button, e.x, e.y);
         }
         XFlush(arg->Display);

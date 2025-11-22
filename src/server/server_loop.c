@@ -86,7 +86,7 @@ static void event_callback(XPointer closure, XRecordInterceptData *recorded_data
         }
         else if (data[0] == MotionNotify) // Движение курсора
         {
-            if (counter == 10)
+            if (counter == 5)
             {
                 counter = 0;
                 setEvn(data, &evn);
