@@ -61,7 +61,7 @@ static void setEvn(uint8_t *data, event *evn)
     evn->x = *x_root;
     evn->y = *y_root;
 }
-
+static int counter = 0;
 // Callback-функция для обработки записанных событий (вызывается для каждого события)
 static void event_callback(XPointer closure, XRecordInterceptData *recorded_data)
 {
@@ -86,10 +86,15 @@ static void event_callback(XPointer closure, XRecordInterceptData *recorded_data
         }
         else if (data[0] == MotionNotify) // Движение курсора
         {
-            setEvn(data, &evn);
-            memcpy(buff, &evn, sizeof(evn));
-            send_socket(sock_fd, buff, sizeof(evn));
-            printf("MotionNotify: %d x=%d; y=%d;\n", evn.button, evn.x, evn.y);
+            if (counter == 10)
+            {
+                counter = 0;
+                setEvn(data, &evn);
+                memcpy(buff, &evn, sizeof(evn));
+                send_socket(sock_fd, buff, sizeof(evn));
+                printf("MotionNotify: %d x=%d; y=%d;\n", evn.button, evn.x, evn.y);
+            }
+            counter++;
         }
         else if (data[0] == ButtonPress) // Нажатие клавиши мыши
         {
